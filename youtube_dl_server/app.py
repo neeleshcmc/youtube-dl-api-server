@@ -6,6 +6,7 @@ import sys
 from flask import Flask, Blueprint, current_app, jsonify, request, redirect, abort
 import youtube_dl
 from youtube_dl.version import __version__ as youtube_dl_version
+from flask_cors import CORS
 
 from .version import __version__
 
@@ -182,5 +183,6 @@ def version():
     return jsonify(result)
 
 app = Flask(__name__)
+CORS(app)
 app.register_blueprint(api)
 app.config.from_pyfile('../application.cfg', silent=True)
